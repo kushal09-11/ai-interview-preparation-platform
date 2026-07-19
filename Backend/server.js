@@ -5,7 +5,7 @@ const { resume, selfDescription, jobDescription } = require("./src/services/temp
 const { generateInterviewReport } = require("./src/services/ai.service")
 
 connectToDB()
-generateInterviewReport({ resume, selfDescription, jobDescription })
+// generateInterviewReport({ resume, selfDescription, jobDescription })
 
 
 const PORT = process.env.PORT || 3000;
