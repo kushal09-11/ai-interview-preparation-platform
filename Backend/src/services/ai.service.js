@@ -35,94 +35,94 @@ const jsonSchema = z.toJSONSchema(interviewReportSchema);
 async function generateInterviewReport({ resume, selfDescription, jobDescription }) {
 
 
-    // const prompt = `Generate a detailed interview report for a candidate with the the following details:
-    //                     Resume: ${resume}
-    //                     Self Description: ${selfDescription}
-    //                     Job Description: ${jobDescription}
-    // `
-    // const response = await ai.models.generateContent({
-    //     model: "gemini-3-flash",
-    //     contents: prompt,
-    //     config: {
-    //         responseMimeType: "application/json",
-    //         responseJsonSchema: jsonSchema
-    //     }
-    // })
+    const prompt = `Generate a detailed interview report for a candidate with the the following details:
+                        Resume: ${resume}
+                        Self Description: ${selfDescription}
+                        Job Description: ${jobDescription}
+    `
+    const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+        config: {
+            responseMimeType: "application/json",
+            responseJsonSchema: jsonSchema
+        }
+    })
 
-    // return JSON.parse(response.text); 
+    return JSON.parse(response.text); 
     // (Above one is Main line)
     // console.log(JSON.parse(response.text)) (Trial line)
     // console.log(interviewReportByAi) (Trial line)
-    return {
-        title: "Backend Developer",
-        matchScore: 85,
+    // return {
+    //     title: "Backend Developer",
+    //     matchScore: 85,
 
-        technicalQuestions: [
-            {
-                question: "Explain the Node.js Event Loop.",
-                intention: "Checks understanding of asynchronous programming.",
-                answer: "Explain event loop phases, callback queue, microtasks and macrotasks."
-            },
-            {
-                question: "How does JWT authentication work?",
-                intention: "Tests authentication knowledge.",
-                answer: "Explain token generation, verification and middleware."
-            }
-        ],
+    //     technicalQuestions: [
+    //         {
+    //             question: "Explain the Node.js Event Loop.",
+    //             intention: "Checks understanding of asynchronous programming.",
+    //             answer: "Explain event loop phases, callback queue, microtasks and macrotasks."
+    //         },
+    //         {
+    //             question: "How does JWT authentication work?",
+    //             intention: "Tests authentication knowledge.",
+    //             answer: "Explain token generation, verification and middleware."
+    //         }
+    //     ],
 
-        behavioralQuestions: [
-            {
-                question: "Tell me about yourself.",
-                intention: "Checks communication skills.",
-                answer: "Talk about your education, projects and backend experience."
-            },
-            {
-                question: "Describe a challenging project.",
-                intention: "Evaluates problem-solving.",
-                answer: "Use the STAR method."
-            }
-        ],
+    //     behavioralQuestions: [
+    //         {
+    //             question: "Tell me about yourself.",
+    //             intention: "Checks communication skills.",
+    //             answer: "Talk about your education, projects and backend experience."
+    //         },
+    //         {
+    //             question: "Describe a challenging project.",
+    //             intention: "Evaluates problem-solving.",
+    //             answer: "Use the STAR method."
+    //         }
+    //     ],
 
-        skillGaps: [
-            {
-                skill: "Redis",
-                severity: "medium"
-            },
-            {
-                skill: "Docker",
-                severity: "low"
-            }
-        ],
+    //     skillGaps: [
+    //         {
+    //             skill: "Redis",
+    //             severity: "medium"
+    //         },
+    //         {
+    //             skill: "Docker",
+    //             severity: "low"
+    //         }
+    //     ],
 
-        preparationPlan: [
-            {
-                day: 1,
-                focus: "Node.js Fundamentals",
-                tasks: [
-                    "Revise Event Loop",
-                    "Practice Async/Await",
-                    "Solve 5 backend questions"
-                ]
-            },
-            {
-                day: 2,
-                focus: "MongoDB",
-                tasks: [
-                    "Study Indexing",
-                    "Aggregation Pipeline",
-                    "Practice Queries"
-                ]
-            },
-            {
-                day: 3,
-                focus: "System Design",
-                tasks: [
-                    "Design URL Shortener",
-                    "Study Load Balancing"
-                ]
-            }
-        ]
-    };  
+    //     preparationPlan: [
+    //         {
+    //             day: 1,
+    //             focus: "Node.js Fundamentals",
+    //             tasks: [
+    //                 "Revise Event Loop",
+    //                 "Practice Async/Await",
+    //                 "Solve 5 backend questions"
+    //             ]
+    //         },
+    //         {
+    //             day: 2,
+    //             focus: "MongoDB",
+    //             tasks: [
+    //                 "Study Indexing",
+    //                 "Aggregation Pipeline",
+    //                 "Practice Queries"
+    //             ]
+    //         },
+    //         {
+    //             day: 3,
+    //             focus: "System Design",
+    //             tasks: [
+    //                 "Design URL Shortener",
+    //                 "Study Load Balancing"
+    //             ]
+    //         }
+    //     ]
+    // };  
 }
 
 
