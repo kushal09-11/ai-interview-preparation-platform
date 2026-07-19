@@ -3,7 +3,7 @@
 This repository contains a two-part interview preparation app:
 
 - `Backend/` provides the Express API, authentication, interview report generation, and resume PDF creation.
-- `Frontend/` provides the Vite + React single-page app for login, registration, and the protected interview workflow.
+- `Frontend/` provides the Vite + React single-page app for login, registration, and the Protected interview workflow.
 
 ## Project Structure
 
@@ -96,7 +96,7 @@ The backend exposes these main routes:
 
 ## Frontend
 
-The frontend is a React SPA built with Vite and Sass. It includes auth pages, protected routes, and interview-related screens under `Frontend/src/features/`.
+The frontend is a React SPA built with Vite and Sass. It includes auth pages, Protected routes, and interview-related screens under `Frontend/src/features/`.
 
 ## License
 
