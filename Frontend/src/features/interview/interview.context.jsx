@@ -7,8 +7,14 @@ export const InterviewProvider = ({children}) => {
     const [report, setReport] = useState(null)
     const [reports, setReports] = useState([])
 
+    const resetInterviewState = () => {
+        setLoading(false)
+        setReport(null)
+        setReports([])
+    }
+
     return (
-        <InterviewContext.Provider value={{loading, setLoading, report, setReport, reports, setReports}}>
+        <InterviewContext.Provider value={{loading, setLoading, report, setReport, reports, setReports, resetInterviewState}}>
             {children}
         </InterviewContext.Provider>
     )
