@@ -8,6 +8,9 @@ const ai = new GoogleGenAI({
 })
 
 const interviewReportSchema = z.object({
+    title: z.string().describe(
+        "Infer the most appropriate job title from the job description. Examples: Generative AI Engineer, Backend Developer, Full Stack Developer, Data Scientist, Machine Learning Engineer."
+    ),
     matchScore: z.number().describe("A score between 0 and 100 indicating how well the candidate's profile matches the job description"),
     technicalQuestions: z.array(z.object({
         question: z.string().describe("The technical question can be asked in the interview"),
@@ -39,6 +42,7 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
                         Resume: ${resume}
                         Self Description: ${selfDescription}
                         Job Description: ${jobDescription}
+                    Infer the most suitable job title from the job description and return only valid JSON matching the schema.
     `
     const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",
