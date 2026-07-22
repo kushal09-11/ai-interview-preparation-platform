@@ -52,7 +52,7 @@
 	padding: 1.1rem;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
 	gap: 1rem;
 }
 
@@ -76,7 +76,11 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.75rem;
-	margin-top: 1rem;
+	margin-top: 0.7rem;
+}
+
+.side-panel--left .button {
+	margin-top: auto;
 }
 
 .section-nav__item {
