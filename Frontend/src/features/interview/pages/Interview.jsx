@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import "../style/interview.scss";
 import { useInterview } from '../hooks/useInterview.js';
-import { useNavigate, useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
+import { useAuth } from '../../auth/hooks/useAuth.js';
 
 // const interviewData = {
 //     matchScore: 62,
@@ -107,6 +108,7 @@ import { useNavigate, useParams } from 'react-router';
 // }
 
 const Interview = () => {
+    const { user } = useAuth();
     const sectionTabs = [
         { key: "technicalQuestions", label: "Technical questions" },
         { key: "behavioralQuestions", label: "Behavioral questions" },
@@ -116,6 +118,8 @@ const Interview = () => {
     const [activeSection, setActiveSection] = useState(sectionTabs[0].key)
     const { report, getReportById, loading, getResumePdf } = useInterview()
     const { interviewId } = useParams()
+    const displayName = user?.username || user?.name || user?.fullName || user?.email?.split("@")[0]
+    const welcomeMessage = displayName ? `Hi, ${displayName}! Ready to ace your next interview?` : "Welcome!"
 
     useEffect(()=>{
         if(interviewId) {
@@ -233,6 +237,11 @@ const Interview = () => {
                 </aside>
 
                 <section className="content-panel" aria-label="Main content">
+                    <div className="welcome-banner" aria-label="Welcome message">
+                        <p className="eyebrow">Welcome</p>
+                        <h2>{welcomeMessage}</h2>
+                    </div>
+
                     <div className="content-panel__hero">
                         <p className="eyebrow">Match score</p>
                         <div className="match-score">
@@ -282,9 +291,9 @@ const Interview = () => {
                 <div className="site-footer__inner">
                     <p className="site-footer__copy">© {new Date().getFullYear()} Interview Planner — Built with Love</p>
                     <nav className="site-footer__nav" aria-label="Footer navigation">
-                        <a href="/terms">Terms</a>
-                        <a href="/privacy">Privacy</a>
-                        <a href="/help">Help</a>
+                        <Link to="/terms">Terms</Link>
+                        <Link to="/privacy">Privacy</Link>
+                        <Link to="/help">Help</Link>
                     </nav>
                 </div>
             </footer>

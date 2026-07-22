@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "../style/home.scss";
 import { useInterview } from "../hooks/useInterview.js";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Home = () => {
   const { loading, generateReport, reports } = useInterview();
@@ -166,9 +166,9 @@ const Home = () => {
         <div className="site-footer__inner">
           <p className="site-footer__copy">© {new Date().getFullYear()} Interview Planner — Built with Love</p>
           <nav className="site-footer__nav" aria-label="Footer navigation">
-            <a href="/terms">Terms</a>
-            <a href="/privacy">Privacy</a>
-            <a href="/help">Help</a>
+            <Link to="/terms">Terms</Link>
+            <Link to="/privacy">Privacy</Link>
+            <Link to="/help">Help</Link>
           </nav>
         </div>
       </footer>
