@@ -7,10 +7,25 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: function (origin, callback) {
+        if (
+            !origin ||
+            /^https:\/\/ai-interview-preparation-platform.*\.vercel\.app$/.test(origin) ||
+            origin === "http://localhost:5173"
+        ) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true
-}))
+}));
+// app.use(cors({
+//     origin: process.env.FRONTEND_URL,
+//     credentials: true
+// }))
 // app.use(cors({
 //     origin: "http://localhost:5173",
 //     credentials: true
