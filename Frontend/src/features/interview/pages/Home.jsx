@@ -61,6 +61,8 @@ const Home = () => {
 
   return (
     <main className="home">
+      <SiteNavbar />
+
       <section className="hero-copy" aria-labelledby="interview-title">
         <p className="eyebrow">AI Interview Planner</p>
         <h1 id="interview-title">Create Your Custom Interview Plan</h1>
@@ -69,8 +71,6 @@ const Home = () => {
           the analysis layer is wired in.
         </p>
       </section>
-
-      <SiteNavbar />
 
       <div className="site-container">
         <section className="interview-card" aria-label="Interview inputs">

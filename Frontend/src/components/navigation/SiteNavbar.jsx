@@ -14,7 +14,6 @@ const SiteNavbar = () => {
             <div className="site-navbar__inner">
                 <div className="site-navbar__brand">
                     <p className="site-navbar__eyebrow">AI Interview Planner</p>
-                    <p className="site-navbar__title">Prepare with clarity</p>
                 </div>
 
                 <nav className="site-navbar__nav" aria-label="Primary">
