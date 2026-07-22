@@ -3,6 +3,7 @@ import "../style/interview.scss";
 import { useInterview } from '../hooks/useInterview.js';
 import { Link, useParams } from 'react-router';
 import { useAuth } from '../../auth/hooks/useAuth.js';
+import SiteNavbar from "../../../components/navigation/SiteNavbar.jsx";
 
 // const interviewData = {
 //     matchScore: 62,
@@ -208,6 +209,7 @@ const Interview = () => {
 
     return (
         <main className="interview-page">
+            <SiteNavbar />
             <section className="interview-shell" aria-label="Interview report layout">
                 <aside className="side-panel side-panel--left" aria-label="Navigation">
                     <div className="side-panel__header">
@@ -296,6 +298,7 @@ const Interview = () => {
                         <Link to="/help">Help</Link>
                     </nav>
                 </div>
+                <p className="site-footer__credit">Designed &amp; Developed by Sai Kushal</p>
             </footer>
         </main>
     );

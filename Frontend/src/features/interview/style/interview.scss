@@ -471,6 +471,7 @@
 	margin-top: 1.5rem;
 	width: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	color: rgba(218, 226, 255, 0.72);
 	font-size: 0.9rem;
@@ -486,6 +487,13 @@
 
 	&__copy {
 		margin: 0;
+	}
+
+	&__credit {
+		margin: 0.35rem 0 0;
+		text-align: center;
+		color: rgba(218, 226, 255, 0.55);
+		font-size: 0.78rem;
 	}
 
 	&__nav a {
@@ -504,6 +512,10 @@
 			flex-direction: column;
 			align-items: flex-start;
 			gap: 0.5rem;
+		}
+
+		&__credit {
+			text-align: left;
 		}
 
 		&__nav a {

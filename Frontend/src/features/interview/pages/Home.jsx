@@ -2,11 +2,14 @@ import React, { useState, useRef } from "react";
 import "../style/home.scss";
 import { useInterview } from "../hooks/useInterview.js";
 import { Link, useNavigate } from "react-router";
+import SiteNavbar from "../../../components/navigation/SiteNavbar.jsx";
 
 const Home = () => {
   const { loading, generateReport, reports } = useInterview();
   const [jobDescription, setJobDescription] = useState("");
   const [selfDescription, setSelfDescription] = useState("");
+  const [resumeFileName, setResumeFileName] = useState("");
+  const [resumeStatus, setResumeStatus] = useState({ type: "idle", message: "" });
   const resumeInputRef = useRef();
 
   const navigate = useNavigate();
@@ -19,6 +22,33 @@ const Home = () => {
       return;
     }
     navigate(`/interview/${data._id}`);
+  };
+
+  const handleResumeChange = (event) => {
+    const selectedFile = event.target.files?.[0];
+
+    if (!selectedFile) {
+      setResumeFileName("");
+      setResumeStatus({ type: "idle", message: "" });
+      return;
+    }
+
+    const isPdf = selectedFile.type === "application/pdf" || selectedFile.name.toLowerCase().endsWith(".pdf");
+
+    setResumeFileName(selectedFile.name);
+
+    if (!isPdf) {
+      setResumeStatus({
+        type: "error",
+        message: "Failed to upload resume. Please try again with a PDF file."
+      });
+      return;
+    }
+
+    setResumeStatus({
+      type: "success",
+      message: `${selectedFile.name} ✓ Uploaded`
+    });
   };
 
   if (loading) {
@@ -39,6 +69,8 @@ const Home = () => {
           the analysis layer is wired in.
         </p>
       </section>
+
+      <SiteNavbar />
 
       <div className="site-container">
         <section className="interview-card" aria-label="Interview inputs">
@@ -82,7 +114,7 @@ const Home = () => {
             <div className="field-group">
               <div className="field-group-head">
                 <span className="field-label">Upload Resume</span>
-                <span className="field-note">PDF or DOCX</span>
+                <span className="field-note">PDF only</span>
               </div>
               <label className="dropzone" htmlFor="resume">
                 <span className="dropzone-icon" aria-hidden="true">
@@ -91,7 +123,7 @@ const Home = () => {
                 <span className="dropzone-title">
                   Click to upload or drag &amp; drop
                 </span>
-                <span className="dropzone-subtitle">PDF or DOCX, max 5MB</span>
+                <span className="dropzone-subtitle">PDF, max 5MB</span>
               </label>
               <input
                 ref={resumeInputRef}
@@ -99,8 +131,21 @@ const Home = () => {
                 type="file"
                 name="resume"
                 id="resume"
-                accept=".pdf,.doc,.docx"
+                accept=".pdf"
+                onChange={handleResumeChange}
               />
+              <div className="resume-status" aria-live="polite">
+                {resumeFileName ? (
+                  <p className={`resume-status__file resume-status__file--${resumeStatus.type}`}>
+                    {resumeStatus.type === "success" ? "✅" : resumeStatus.type === "error" ? "❌" : "📄"} {resumeFileName}
+                  </p>
+                ) : null}
+                {resumeStatus.message ? (
+                  <p className={`resume-status__message resume-status__message--${resumeStatus.type}`}>
+                    {resumeStatus.message}
+                  </p>
+                ) : null}
+              </div>
             </div>
 
             <div className="divider">
@@ -171,6 +216,7 @@ const Home = () => {
             <Link to="/help">Help</Link>
           </nav>
         </div>
+        <p className="site-footer__credit">Designed &amp; Developed by Sai Kushal</p>
       </footer>
     </main>
   );

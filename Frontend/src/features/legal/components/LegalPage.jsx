@@ -1,9 +1,11 @@
 import { Link } from "react-router";
+import SiteNavbar from "../../../components/navigation/SiteNavbar.jsx";
 import "../style/legal.scss";
 
 const LegalPage = ({ eyebrow, title, lead, sections, supportEmail }) => {
     return (
         <main className="legal-page">
+            <SiteNavbar />
             <section className="legal-shell" aria-labelledby="legal-title">
                 <header className="legal-hero">
                     <p className="eyebrow">{eyebrow}</p>
@@ -47,6 +49,7 @@ const LegalPage = ({ eyebrow, title, lead, sections, supportEmail }) => {
                         <Link to="/help">Help</Link>
                     </nav>
                 </div>
+                <p className="site-footer__credit">Designed &amp; Developed by Sai Kushal</p>
             </footer>
         </main>
     );

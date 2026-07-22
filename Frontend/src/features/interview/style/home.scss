@@ -244,6 +244,30 @@
         font-size: 0.78rem;
     }
 
+    .resume-status {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding-inline: 0.15rem;
+
+        &__file,
+        &__message {
+            margin: 0;
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+
+        &__file--success,
+        &__message--success {
+            color: #8bd69b;
+        }
+
+        &__file--error,
+        &__message--error {
+            color: #ff96ac;
+        }
+    }
+
     .divider {
         display: flex;
         align-items: center;
@@ -399,6 +423,7 @@
         margin-top: auto;
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         color: rgba(218, 226, 255, 0.72);
         font-size: 0.9rem;
@@ -414,6 +439,13 @@
 
         &__copy {
             margin: 0;
+        }
+
+        &__credit {
+            margin: 0.35rem 0 0;
+            text-align: center;
+            color: rgba(218, 226, 255, 0.55);
+            font-size: 0.78rem;
         }
 
         &__nav a {
@@ -432,6 +464,10 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.5rem;
+            }
+
+            &__credit {
+                text-align: left;
             }
 
             &__nav a {
